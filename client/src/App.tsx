@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import {Button, Grid, TextField} from '@mui/material'
 
-function App() {
+import {IApiWindow} from '../../src/types/types'
+
+declare const window: Window & typeof globalThis & IApiWindow
+
+export function App() {
+    const [time, setTime] = useState('1')
+    const [text, setText] = useState('')
+
+    const onClickSend = async () => {
+        setText('')
+        const result = await window.api.runShutdown(time)
+        setText(result)
+    }
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+        <div className={'app'}>
+            <Grid container spacing={2} direction={'row'} alignItems={'center'}>
+                <Grid item xs={8}>
+                    <TextField
+                        label="Завершение работы компьютера через (в минутах)" variant="outlined"
+                        value={time}
+                        onChange={(event) => {
+                            setTime(event.target.value)
+                        }}
+                        fullWidth={true}
+                    />
+                </Grid>
+                <Grid item>
+                    <Button variant="outlined" onClick={onClickSend}>Отправить</Button>
+                </Grid>
+            </Grid>
+            <div className={'br'}>
+                {text}
+            </div>
         </div>
-    );
+    )
 }
-
-export default App;

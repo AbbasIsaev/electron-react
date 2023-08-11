@@ -1,8 +1,13 @@
 {
   "name": "client",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "author": "Isaev Abbas",
   "private": true,
+  "homepage": "./",
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -19,6 +24,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "lint": "eslint ./src",
+    "lint:fix": "npm run lint -- --fix",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -39,5 +46,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "volta": {
+    "node": "18.12.1",
+    "npm": "8.19.2"
   }
 }

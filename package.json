@@ -6,14 +6,16 @@
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
+    "start-client": "set BROWSER=none&& npm run start --prefix ./client",
+    "make": "npm run build --prefix ./client && set NODE_ENV=production&& electron-forge make",
     "package": "electron-forge package",
-    "make": "npm run build --prefix ./client && electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "eslint --ext .ts,.tsx ."
+    "lint": "eslint --ext .ts,.tsx .",
+    "lint:fix": "npm run lint -- --fix"
   },
   "keywords": [],
   "author": {
-    "name": "isaev",
+    "name": "Isaev Abbas",
     "email": "abbas.isaev@gmail.com"
   },
   "license": "MIT",
@@ -41,5 +43,9 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0"
+  },
+  "volta": {
+    "node": "18.12.1",
+    "npm": "8.19.2"
   }
 }
