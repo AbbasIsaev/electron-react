@@ -1,6 +1,7 @@
 # electron-react
 
-electron-react - проект (desktop приложение) для удобного запуска .bat файлов. Структура проекта Electron Forge + React.
+electron-react - проект (desktop приложение) для удобного запуска .bat файлов.
+Структура проекта Electron Forge + Create React App.
 
 Основной функционал приложения:
 
