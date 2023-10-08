@@ -7,12 +7,12 @@ declare const window: Window & typeof globalThis & IApiWindow
 
 export function App() {
     const [time, setTime] = useState('1')
-    const [text, setText] = useState('')
+    const [result, setResult] = useState('')
+    const [isDisabled, setIsDisabled] = useState(false)
 
     const onClickSend = async () => {
-        setText('')
         const result = await window.api.runShutdown(time)
-        setText(result)
+        setResult(result)
     }
 
     return (
@@ -24,16 +24,31 @@ export function App() {
                         value={time}
                         onChange={(event) => {
                             setTime(event.target.value)
+                            const value = Number(event.target.value)
+                            if (isNaN(value) || event.target.value.trim() === '' || value < 0) {
+                                setResult('Ошибка ввода, введите число')
+                                setIsDisabled(true)
+                            } else {
+                                setResult('')
+                                setIsDisabled(false)
+                            }
                         }}
                         fullWidth={true}
                     />
                 </Grid>
                 <Grid item>
-                    <Button variant="outlined" onClick={onClickSend}>Отправить</Button>
+                    <Button
+                        variant="outlined"
+                        onClick={onClickSend}
+                        disabled={isDisabled}
+                    >
+                        Отправить
+                    </Button>
                 </Grid>
             </Grid>
-            <div className={'br'}>
-                {text}
+
+            <div className={'br' + (isDisabled ? ' red' : '')}>
+                {result}
             </div>
         </div>
     )

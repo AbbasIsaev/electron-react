@@ -20,3 +20,7 @@ code {
 .br {
     white-space: pre-line
 }
+
+.red {
+    color: red;
+}

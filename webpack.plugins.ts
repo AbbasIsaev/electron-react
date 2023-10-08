@@ -14,10 +14,10 @@ export const plugins: any = [
     new ForkTsCheckerWebpackPlugin({
         logger: 'webpack-infrastructure'
     }),
-    // Копируем shell_scripts в сборку
+    // Копируем shellScripts в сборку
     new CopyPlugin({
         patterns: [
-            {from: './src/shell_scripts/*', to: './'}
+            {from: './src/shellScripts/*', to: './'}
         ]
     })
 ]
